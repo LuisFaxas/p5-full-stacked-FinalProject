@@ -13,6 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../state";
 import { serverUrl } from "../../config";
 
+import TextField from "@mui/material";
+import Button from "@mui/material";
+
 const PostWidget = ({
   postId,
   postUserId,
