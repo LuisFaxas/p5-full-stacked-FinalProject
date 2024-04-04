@@ -50,11 +50,12 @@ const upload = multer({ storage });
 app.post("/auth/register", upload.single("picture"), register);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
+
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
-app.use('/comments', commentRoutes);
+app.use('/posts/:postId/comments', commentRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001;

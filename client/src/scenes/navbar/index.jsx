@@ -41,6 +41,17 @@ const Navbar = () => {
 
   const fullName = `${user.firstName} ${user.lastName}`;
 
+  const [searchInput, setSearchInput] = useState("");  // State to hold the search input
+  const [searchResults, setSearchResults] = useState([]); // State to hold search results
+
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+  const handleSearch = async () => {
+    console.log("Searching for:", searchInput);
+    
+  }
+
   return (
     <FlexBetween /*only in box comp*/ padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">
