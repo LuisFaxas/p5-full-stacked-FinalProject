@@ -16,15 +16,21 @@ const UserSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
       max: 50,
       unique: true,
+      required: function() {
+        // Require an email only if the user is not signing in through GitHub
+        return !this.githubId;
+      },
     },
     password: {
       type: String,
-      required: true,
       min: 5,
+      required: function() {
+        // Require a password only if the user is not signing in through GitHub
+        return !this.githubId
     },
+  },
     picturePath: {
       type: String,
       default: "",
@@ -32,6 +38,11 @@ const UserSchema = new mongoose.Schema(
     friends: {
       type: Array,
       default: [],
+    },
+    githubId: {
+      type: String,
+      required: false,
+      unique: true, // Ensure that the GitHub ID is unique in the database
     },
     location: String,
     occupation: String,

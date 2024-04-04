@@ -102,6 +102,12 @@ const Form = () => {
     if (isRegister) await register(values, onSubmitProps);
   };
 
+  const handleGitHubLogin = () => {
+    // This should point to an endpoint on your backend that initiates the GitHub OAuth process
+    const backendAuthUrl = "http://localhost:3001/auth/github";
+    window.location.assign(backendAuthUrl);
+  };
+
   return (
     <Formik
       onSubmit={handleFormSubmit}
@@ -266,8 +272,23 @@ const Form = () => {
                 : "Already have an account? Login here."}
             </Typography>
           </Box>
+          <Button
+        fullWidth
+        onClick={handleGitHubLogin}
+        sx={{
+          m: "1rem 0",
+          p: "1rem",
+          backgroundColor: palette.secondary.main,
+          color: palette.background.alt,
+          "&:hover": { color: palette.secondary.main },
+        }}
+      >
+        Login with GitHub
+      </Button>
         </form>
       )}
+
+     
     </Formik>
   );
 };

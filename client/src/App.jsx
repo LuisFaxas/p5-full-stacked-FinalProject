@@ -7,12 +7,20 @@ import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   const mode = useSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   const isAuth = Boolean(useSelector((state) => state.token));
 
+/*   useEffect(() => {
+    if (isAuth) {
+      Navigate('/home');
+    }
+  }, [isAuth, Navigate]);
+ */
   return (
     <div className="app">
       <BrowserRouter>
