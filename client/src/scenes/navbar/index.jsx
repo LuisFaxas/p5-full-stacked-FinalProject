@@ -41,7 +41,7 @@ const Navbar = () => {
 
   const fullName = `${user.firstName} ${user.lastName}`;
 
-  const [searchInput, setSearchInput] = useState("");  // State to hold the search input
+  const [searchInput, setSearchInput] = useState(""); // State to hold the search input
   const [searchResults, setSearchResults] = useState([]); // State to hold search results
 
   const handleSearchInputChange = (event) => {
@@ -49,8 +49,7 @@ const Navbar = () => {
   };
   const handleSearch = async () => {
     console.log("Searching for:", searchInput);
-    
-  }
+  };
 
   return (
     <FlexBetween /*only in box comp*/ padding="1rem 6%" backgroundColor={alt}>
@@ -75,9 +74,21 @@ const Navbar = () => {
             borderRadius="9px"
             gap="3rem"
             padding="0.1rem 1.5rem"
+            component="form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch();
+            }}
           >
-            <InputBase placeholder="search.." />
-            <IconButton>
+            <InputBase placeholder="search.." 
+              value={searchInput} 
+              onChange={handleSearchInputChange}
+            />
+            
+            <IconButton 
+            type="submit" // This will trigger form submission on click
+            onClick={handleSearch}
+            >
               <Search />
             </IconButton>
           </FlexBetween>
@@ -161,7 +172,10 @@ const Navbar = () => {
             alignItems="center"
             gap="3rem"
           >
-            <IconButton onClick={() => dispatch(setMode())} sx={{fontSize: "25px"}}>
+            <IconButton
+              onClick={() => dispatch(setMode())}
+              sx={{ fontSize: "25px" }}
+            >
               {theme.palette.mode === "dark" ? (
                 <DarkMode sx={{ fontSize: "25px" }} />
               ) : (
