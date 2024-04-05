@@ -18,9 +18,10 @@ const ProfilePage = () => {
   const getUser = async () => {
     const response = await fetch(`${serverUrl}/users/${userId}`, {
       method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
+      // headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
+    console.log("this is the user", data)
     setUser(data);
   };
 

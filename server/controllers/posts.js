@@ -1,6 +1,7 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
 
+
 /* CREATE */
 export const createPost = async (req, res) => {
   try {
@@ -43,6 +44,29 @@ export const getUserPosts = async (req, res) => {
     res.status(200).json(post);
   } catch (err) {
     res.status(404).json({ message: err.message });
+  }
+};
+
+/* DELETE */
+export const deletePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const post = await Post.findById(id);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    if (post.userId.toString() !== req.user.id) {
+      return res.status(403).json({ message: 'User not authorized to delete this post' });
+    }
+
+    // Use findOneAndDelete method instead
+    await Post.findOneAndDelete({ _id: id });
+
+    res.json({ message: 'Post deleted successfully' });
+  } catch (error) {
+    console.error(error); // This will log the full error stack to the console
+    res.status(500).json({ message: 'An error occurred', error: error.message });
   }
 };
 

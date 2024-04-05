@@ -38,6 +38,12 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handlePostDeleted = (deletedPostId) => {
+    // Update your local state or store to remove the post with deletedPostId
+    dispatch(setPosts({ posts: posts.filter(post => post._id !== deletedPostId) }));
+    // If you have a specific action to remove a post, you can dispatch it here
+  };
+
   return (
     <>
       {posts.map(
@@ -64,6 +70,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             userPicturePath={userPicturePath}
             likes={likes}
             comments={comments}
+            onDelete={handlePostDeleted}
           />
         )
       )}

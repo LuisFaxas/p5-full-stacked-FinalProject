@@ -22,8 +22,8 @@ import commentRoutes from "./routes/comments.js";
 import passport from "passport";
 import { Strategy as GitHubStrategy } from "passport-github";
 import session from "express-session";
-import MongoStore from "connect-mongo";
 
+import MongoStore from "connect-mongo";
 import jwt from "jsonwebtoken";
 
 /* CONFIGURATIONS */
@@ -37,7 +37,9 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+
 app.use(cors());
+
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 /* FILE STORAGE */
@@ -97,6 +99,7 @@ app.get(
   '/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   async (req, res) => {
+    console.log("This is req.query====>", req.query)
     console.log(req.user); 
     let user = await User.findOne({ githubId: req.user.id });
 
@@ -118,10 +121,15 @@ app.get(
       res.redirect(`/complete-profile?userId=${user._id}`);
     } else {
       // If the user already has a first name and last name, redirect to 'home'
-      res.redirect('http://localhost:5173/home');
+      res.redirect(`http://localhost:5173/profile/${user._id}`);
+
     }
   }
 );
+
+app.get('/auth/wowzers', (req, res, next) => {
+  res.redirect('/auth/github')
+})
 
 app.post('/users/:userId/complete-profile', async (req, res) => {
   const { userId } = req.params;

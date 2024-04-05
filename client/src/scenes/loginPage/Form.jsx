@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../state/index";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
+import axios from "axios";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -106,6 +107,12 @@ const Form = () => {
     // This should point to an endpoint on your backend that initiates the GitHub OAuth process
     const backendAuthUrl = "http://localhost:3001/auth/github";
     window.location.assign(backendAuthUrl);
+
+    // axios.get('http://localhost:3001/auth/wowzers')
+    //   .then((response) => {
+    //     console.log("This is get oauth response", response)
+    //   })
+
   };
 
   return (
@@ -272,6 +279,7 @@ const Form = () => {
                 : "Already have an account? Login here."}
             </Typography>
           </Box>
+          
           <Button
         fullWidth
         onClick={handleGitHubLogin}
