@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "../../state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
+import logo from "../../assets/full Stacked.png";
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -54,6 +55,14 @@ const Navbar = () => {
   return (
     <FlexBetween /*only in box comp*/ padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">
+      <img 
+        src={logo} 
+        alt="Logo" 
+        style={{ width: '3rem', cursor: "pointer" }} // adjust size as needed
+        onClick={() => navigate("/home")}
+        
+       
+      />
         <Typography
           fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem" /*min,pref,max*/
@@ -66,7 +75,7 @@ const Navbar = () => {
             } /*Passing Css*/,
           }}
         >
-          Full Stacked
+         
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween

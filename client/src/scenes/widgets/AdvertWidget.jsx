@@ -20,15 +20,15 @@ const AdvertWidget = () => {
         width="100%"
         height="auto"
         alt="advert"
-        src="http://localhost:3001/assets/IMG_6968.jpeg"
+        src="http://localhost:3001/assets/Ironhack-1-1.png"
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
-        <Typography color={main}>MikaCosmetics</Typography>
-        <Typography color={medium}>mikacosmetics.com</Typography>
+        <Typography color={main}>Iron Hack</Typography>
+        <Typography color={medium}>ironhack.com</Typography>
       </FlexBetween>
       <Typography color={medium} m="0.5rem 0">
-        random add text here 
+      Learn Web Development, UX/UI, and Data Analytics with Ironhack Miami. 
       </Typography>
     </WidgetWrapper>
   );
