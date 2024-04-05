@@ -1,6 +1,7 @@
 import { Typography, useTheme } from "@mui/material";
 import FlexBetween from "../../components/FlexBetween";
 import WidgetWrapper from "../../components/WidgetWrapper";
+import { serverUrl } from "../../config";
 
 const AdvertWidget = () => {
   const { palette } = useTheme();
@@ -20,7 +21,7 @@ const AdvertWidget = () => {
         width="100%"
         height="auto"
         alt="advert"
-        src="http://localhost:3001/assets/Ironhack-1-1.png"
+        src={`${serverUrl}/assets/Ironhack-1-1.png`}
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
